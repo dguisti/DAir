@@ -40,6 +40,8 @@ function drawPoint(point) {
 
 // window.addEventListener("resize", resizeCanvas); This is an important feature for the future, but I'm not sure how to do it without clearing the canvas
 
+// test
+
 resizeCanvas();
 
 var points = [];
