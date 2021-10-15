@@ -25,7 +25,7 @@ function Point(x, y, aqi, outer_aqi, weight) {
     this.aqi = aqi;
     this.inner_color = getColor(aqi);
     this.outer_color = 'rgba(255, 255, 255, 0)'//getColor(outer_aqi);
-    this.weight = weight * 200;
+    this.weight = weight;
 }
 
 function drawPoint(point) {
@@ -41,7 +41,7 @@ function drawPoint(point) {
 }
 
 function newDrawPoint(p) {
-    console.log(`x: ${p.x}, y: ${p.y}, aqi: ${p.aqi}, inner_color: ${p.inner_color}, outer_color: ${p.outer_color}, weight: ${p.weight}`)
+    //console.log(`x: ${p.x}, y: ${p.y}, aqi: ${p.aqi}, inner_color: ${p.inner_color}, outer_color: ${p.outer_color}, weight: ${p.weight}`)
     var radgrad = ctx.createRadialGradient(p.x, p.y, 1, p.x, p.y, p.weight);
     radgrad.addColorStop(0, `rgb(${point.inner_color[0]}, ${point.inner_color[1]}, ${point.inner_color[2]})`);
     radgrad.addColorStop(1, p.outer_color);
@@ -55,14 +55,19 @@ resizeCanvas();
 
 var points = [];
 
-var point_count = 50;
+var point_count = 5000;
 var point_radius = 20;
 
 for (let i = 0; i < point_count; i++) {
-    let p = new Point(randint(0, c.width), randint(0, c.height), randint(0, 300), 0, 1);
+    let p = new Point(randint(0, c.width), randint(0, c.height), randint(0, 300), 0, point_radius);
     points.push(p);
 }
 
 for (point of points) {
     newDrawPoint(point);
 }
+
+/* Useful links:
+https://stackoverflow.com/questions/22356012/multiple-points-colors-gradient-on-html5-canvas
+https://codepen.io/tculda/pen/pogwpOw
+*/
